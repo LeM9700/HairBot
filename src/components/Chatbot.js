@@ -111,6 +111,29 @@ const Chatbot = () => {
         setInput("");
 
         setTimeout(async () => {
+
+          if (smsStep) {
+        try {
+          await confirmationResult.confirm(response);
+          setSmsStep(false);
+          newMessages.push({
+            text: `Merci ${reservation.name} ! Voici le récapitulatif de votre demande :
+\n💇‍♀️ Prestation : ${reservation.prestation}
+\n📅 Date : ${reservation.date}
+\n🕒 Heure : ${reservation.time}
+\n📞 Téléphone : ${reservation.phone}
+\nConfirmez-vous la réservation ?`,
+            sender: "bot"
+          });
+          setStep(7);
+        } catch (error) {
+          newMessages.push({ text: "Code incorrect. Merci de réessayer.", sender: "bot" });
+        }
+        setMessages(newMessages);
+        setIsTyping(false);
+        return;
+      }
+
             if (step === 1) {
                 if (response.toLowerCase() === "oui") {
           newMessages.push({ text: "Quel est votre prénom ?", sender: "bot" });;
@@ -173,27 +196,7 @@ const Chatbot = () => {
         return;
       }
       // Vérification du code SMS
-      if (smsStep) {
-        try {
-          await confirmationResult.confirm(response);
-          setSmsStep(false);
-          newMessages.push({
-            text: `Merci ${reservation.name} ! Voici le récapitulatif de votre demande :
-\n💇‍♀️ Prestation : ${reservation.prestation}
-\n📅 Date : ${reservation.date}
-\n🕒 Heure : ${reservation.time}
-\n📞 Téléphone : ${reservation.phone}
-\nConfirmez-vous la réservation ?`,
-            sender: "bot"
-          });
-          setStep(7);
-        } catch (error) {
-          newMessages.push({ text: "Code incorrect. Merci de réessayer.", sender: "bot" });
-        }
-        setMessages(newMessages);
-        setIsTyping(false);
-        return;
-      } else if (step === 7) {
+       else if (step === 7) {
                 if (response.toLowerCase() === "oui") {
                     try {
                         const now = new Date();
