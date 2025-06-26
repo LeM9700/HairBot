@@ -269,7 +269,7 @@ const Chatbot = () => {
                             'Er6iVCvQCds16CSph'
                         );
                         newMessages.push({ text: "Votre rendez-vous est enregistré ! Nous vous contacterons pour confirmation. Merci pour votre confiance !", sender: "bot" });
-                        setTimeout(() => navigate("/"), 5000);
+                        setTimeout(() => navigate("/merci"), 5000);
                     } catch (error) {
                         newMessages.push({ text: "Erreur lors de l'enregistrement. Veuillez réessayer. " + error.message, sender: "bot" });
                     }

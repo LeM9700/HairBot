@@ -1,0 +1,85 @@
+.main {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.up, .down {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.card1, .card2, .card3, .card4 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 90px 5px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+.card2 { border-radius: 5px 90px 5px 5px; }
+.card3 { border-radius: 5px 5px 5px 90px; }
+.card4 { border-radius: 5px 5px 90px 5px; }
+
+.instagram {
+    margin-top: 1.5em;
+    margin-left: 1.2em;
+    fill: #cc39a4;
+}
+.tiktok {
+    margin-top: 1.5em;
+    margin-left: -.9em;
+    fill: #000;
+}
+.snapchat {
+    margin-top: -.6em;
+    margin-left: 1.2em;
+    fill: #fffc00;
+    stroke: #000;
+    stroke-width: 1px;
+}
+.whatsapp {
+    margin-top: -.9em;
+    margin-left: -1.2em;
+    fill: #25D366;
+}
+
+.card1:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #cc39a4;
+}
+.card1:hover .instagram { fill: white; }
+
+.card2:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #000;
+}
+.card2:hover .tiktok { fill: #fff; }
+
+.card3:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #fffc00;
+}
+.card3:hover .snapchat { fill: #fff; stroke: #000; }
+
+.card4:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #25D366;
+}
+.card4:hover .whatsapp { fill: #fff; }
