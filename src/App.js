@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/HairBot">
       <Routes>
         <Route path="/" element={<Chatbot />} />
         <Route path="/merci" element={<ThankYou />} />
