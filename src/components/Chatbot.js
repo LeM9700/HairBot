@@ -199,11 +199,10 @@ const Chatbot = () => {
        else if (step === 7) {
                 if (response.toLowerCase() === "oui") {
                     try {
-                        const now = new Date();
-                        const formattedDate = now.toLocaleDateString('fr-FR');
-                        setReservation({ ...reservation, sentAt: formattedDate });
-                        await addDoc(collection(db, "reservations"), reservation);
-                         // Vérification de créneau déjà réservé
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('fr-FR');
+
+            // Vérification de créneau déjà réservé AVANT l'enregistrement
             const [year, month, day] = reservation.date.split("-");
             const [hour, minute] = reservation.time.split(":");
             const selectedDate = new Date(year, month - 1, day, hour, minute);
@@ -227,24 +226,31 @@ const Chatbot = () => {
             const querySnapshot = await getDocs(q);
 
             if (!querySnapshot.empty) {
-                newMessages.push({ text: "Ce créneau est déjà réservé. Merci de choisir une autre heure.", sender: "bot" });
+                newMessages.push({ text: "Ce créneau est déjà réservé. Merci de choisir une autre date ou heure.", sender: "bot" });
+                setStep(4); // Revenir à la sélection de la date
                 setMessages(newMessages);
                 setIsTyping(false);
                 return;
             }
 
-                        // Ajout ou mise à jour du client dans "clients" avec incrémentation du nombre de visites
-                        const clientRef = doc(db, "clients", reservation.phone);
-                        await setDoc(
-                            clientRef,
-                            {
-                                name: reservation.name,
-                                phone: reservation.phone,
-                                createdAt: formattedDate,
-                                visites: increment(1)
-                            },
-                            { merge: true }
-                        );
+            // Si le créneau est libre, on enregistre la réservation
+            const reservationToSave = { ...reservation, sentAt: formattedDate };
+            await addDoc(collection(db, "reservations"), reservationToSave);
+
+            // Ajout ou mise à jour du client dans "clients" avec incrémentation du nombre de visites
+            if (reservation.phone) {
+                const clientRef = doc(db, "clients", reservation.phone);
+                await setDoc(
+                    clientRef,
+                    {
+                        name: reservation.name,
+                        phone: reservation.phone,
+                        createdAt: formattedDate,
+                        visites: increment(1)
+                    },
+                    { merge: true }
+                );
+            }
 
                         // EmailJS params adaptés
                         const templateParams = {
