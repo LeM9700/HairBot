@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; URL=/HairBot/" />
+    <script>
+      // Redirige vers la bonne route côté client
+      var l = window.location;
+      var path = l.pathname.replace(/^\/HairBot/, '');
+      window.location.replace('/HairBot/#' + path + l.search + l.hash);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
