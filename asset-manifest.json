@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/HairBot/static/css/main.e4349a3e.css",
-    "main.js": "/HairBot/static/js/main.178fd84f.js",
+    "main.js": "/HairBot/static/js/main.2f4ad8ef.js",
     "static/js/453.db1dd950.chunk.js": "/HairBot/static/js/453.db1dd950.chunk.js",
     "index.html": "/HairBot/index.html",
     "main.e4349a3e.css.map": "/HairBot/static/css/main.e4349a3e.css.map",
-    "main.178fd84f.js.map": "/HairBot/static/js/main.178fd84f.js.map",
+    "main.2f4ad8ef.js.map": "/HairBot/static/js/main.2f4ad8ef.js.map",
     "453.db1dd950.chunk.js.map": "/HairBot/static/js/453.db1dd950.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e4349a3e.css",
-    "static/js/main.178fd84f.js"
+    "static/js/main.2f4ad8ef.js"
   ]
 }
