@@ -1,11 +1,11 @@
 import './App.css';
 import Chatbot from './components/Chatbot';
 import ThankYou from './pages/ThankYou'; // à créer à l'étape suivante
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Router basename="/HairBot">
+    <Router >
       <Routes>
         <Route path="/" element={<Chatbot />} />
         <Route path="/merci" element={<ThankYou />} />
